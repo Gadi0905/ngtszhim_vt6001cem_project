@@ -1,7 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class TemperatureScreen extends StatefulWidget {
   const TemperatureScreen({Key? key}) : super(key: key);
@@ -11,6 +12,13 @@ class TemperatureScreen extends StatefulWidget {
 }
 
 class _TemperatureScreenState extends State<TemperatureScreen> {
+  final fb = FirebaseDatabase.instance;
+  var l;
+  var g;
+  var k;
+  var temperature;
+  var humidity;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,58 +28,65 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<_TempData> data = [
-      _TempData('00:00', 25),
-      _TempData('03:00', 24),
-      _TempData('06:00', 15),
-      _TempData('09:00', 14),
-      _TempData('12:00', 14),
-      _TempData('15:00', 13),
-      _TempData('18:00', 18),
-      _TempData('21:00', 22),
-      _TempData('24:00', 25),
-    ];
-
+    final ref = fb.ref().child('data/temperature');
     return DefaultBackgroundWidget.basicColor(
       context: context,
-      child: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.4,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+      child: FirebaseAnimatedList(
+        query: ref,
+        shrinkWrap: true,
+        itemBuilder: (context, snapshot, animation, index) {
+          var v = snapshot.value.toString();
+          g = v.replaceAll(RegExp("{|}|humidity: |temperature: "), "");
+          g.trim();
+          l = g.split(',');
+          temperature = l[0];
+          return Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: _buildCard(
+              title: "$temperature C",
+              icon: Icons.thermostat,
+              color: Colors.red,
+              onTapItem: () {},
             ),
-            elevation: 10,
-            child: _buildSfCartesianChart(data),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCard({
+    String? title,
+    IconData? icon,
+    Color? color,
+    Function()? onTapItem,
+  }) {
+    return InkWell(
+      onTap: onTapItem,
+      child: SizedBox(
+        height: 80,
+        child: Card(
+          elevation: 10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(width: 20),
+              Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
+              const SizedBox(width: 20),
+              Text(
+                title ?? 'Card',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios_rounded,
+                  size: 30, color: Colors.black),
+              const SizedBox(width: 20),
+            ],
           ),
         ),
       ),
     );
   }
-
-  Widget _buildSfCartesianChart(List<_TempData> data) {
-    return SfCartesianChart(
-      primaryXAxis: CategoryAxis(),
-      title: ChartTitle(text: 'Temperature List'),
-      legend: Legend(isVisible: true),
-      tooltipBehavior: TooltipBehavior(enable: true),
-      series: <ChartSeries<_TempData, String>>[
-        LineSeries<_TempData, String>(
-          dataSource: data,
-          xValueMapper: (_TempData temperature, _) => temperature.hour,
-          yValueMapper: (_TempData temperature, _) => temperature.temp,
-          name: 'Temp',
-          dataLabelSettings: const DataLabelSettings(isVisible: true),
-        )
-      ],
-    );
-  }
-}
-
-class _TempData {
-  _TempData(this.hour, this.temp);
-
-  final String hour;
-  final double temp;
 }

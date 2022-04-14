@@ -1,7 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HumidityScreen extends StatefulWidget {
   const HumidityScreen({Key? key}) : super(key: key);
@@ -11,6 +12,13 @@ class HumidityScreen extends StatefulWidget {
 }
 
 class _HumidityScreenState extends State<HumidityScreen> {
+  final fb = FirebaseDatabase.instance;
+  var l;
+  var g;
+  var k;
+  var temperature;
+  var humidity;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,54 +28,65 @@ class _HumidityScreenState extends State<HumidityScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<_HumidityData> data = [
-      _HumidityData('00:00', 65),
-      _HumidityData('03:00', 64),
-      _HumidityData('06:00', 55),
-      _HumidityData('09:00', 54),
-      _HumidityData('12:00', 54),
-      _HumidityData('15:00', 53),
-      _HumidityData('18:00', 58),
-      _HumidityData('21:00', 62),
-      _HumidityData('24:00', 65),
-    ];
+    final ref = fb.ref().child('data/humidity');
     return DefaultBackgroundWidget.basicColor(
       context: context,
-      child: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.4,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+      child: FirebaseAnimatedList(
+        query: ref,
+        shrinkWrap: true,
+        itemBuilder: (context, snapshot, animation, index) {
+          var v = snapshot.value.toString();
+          g = v.replaceAll(RegExp("{|}|humidity: |temperature: "), "");
+          g.trim();
+          l = g.split(',');
+          humidity = l[0];
+          return Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: _buildCard(
+              title: "$humidity %",
+              icon: Icons.opacity,
+              color: Colors.blue,
+              onTapItem: () {},
             ),
-            elevation: 10,
-            child: SfCartesianChart(
-              primaryXAxis: CategoryAxis(),
-              title: ChartTitle(text: 'Humidity List'),
-              legend: Legend(isVisible: true),
-              tooltipBehavior: TooltipBehavior(enable: true),
-              series: <ChartSeries<_HumidityData, String>>[
-                LineSeries<_HumidityData, String>(
-                  dataSource: data,
-                  xValueMapper: (_HumidityData humidity, _) => humidity.hour,
-                  yValueMapper: (_HumidityData humidity, _) =>
-                      humidity.humidity,
-                  name: 'Humidity',
-                  dataLabelSettings: const DataLabelSettings(isVisible: true),
-                )
-              ],
-            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCard({
+    String? title,
+    IconData? icon,
+    Color? color,
+    Function()? onTapItem,
+  }) {
+    return InkWell(
+      onTap: onTapItem,
+      child: SizedBox(
+        height: 80,
+        child: Card(
+          elevation: 10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(width: 20),
+              Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
+              const SizedBox(width: 20),
+              Text(
+                title ?? 'Card',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios_rounded,
+                  size: 30, color: Colors.black),
+              const SizedBox(width: 20),
+            ],
           ),
         ),
       ),
     );
   }
-}
-
-class _HumidityData {
-  _HumidityData(this.hour, this.humidity);
-
-  final String hour;
-  final double humidity;
 }
