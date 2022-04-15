@@ -18,6 +18,7 @@ class _HumidityScreenState extends State<HumidityScreen> {
   var k;
   var temperature;
   var humidity;
+  var time;
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,16 @@ class _HumidityScreenState extends State<HumidityScreen> {
         shrinkWrap: true,
         itemBuilder: (context, snapshot, animation, index) {
           var v = snapshot.value.toString();
-          g = v.replaceAll(RegExp("{|}|humidity: |temperature: "), "");
+          g = v.replaceAll(RegExp("{|}|humidity: |temperature: |time: "), "");
           g.trim();
           l = g.split(',');
           humidity = l[0];
+          time = l[1];
           return Padding(
             padding: const EdgeInsets.all(30.0),
             child: _buildCard(
               title: "$humidity %",
+              subTitle: "Time: $time",
               icon: Icons.opacity,
               color: Colors.blue,
               onTapItem: () {},
@@ -56,6 +59,7 @@ class _HumidityScreenState extends State<HumidityScreen> {
 
   Widget _buildCard({
     String? title,
+    String? subTitle,
     IconData? icon,
     Color? color,
     Function()? onTapItem,
@@ -72,12 +76,27 @@ class _HumidityScreenState extends State<HumidityScreen> {
               const SizedBox(width: 20),
               Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
               const SizedBox(width: 20),
-              Text(
-                title ?? 'Card',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+                  Text(
+                    title ?? 'title',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    subTitle ?? 'subTitle',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                ],
               ),
               const Spacer(),
               const Icon(Icons.arrow_forward_ios_rounded,
