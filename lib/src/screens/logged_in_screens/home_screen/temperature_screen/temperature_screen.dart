@@ -3,6 +3,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/card_widget/card_widget.dart';
 
 class TemperatureScreen extends StatefulWidget {
   const TemperatureScreen({Key? key}) : super(key: key);
@@ -44,67 +45,15 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
           time = l[1];
           return Padding(
             padding: const EdgeInsets.all(30.0),
-            child: _buildCard(
-              title: "$temperature C",
-              subTitle: "Time: $time",
-              icon: Icons.thermostat,
-              color: Colors.red,
-              onTapItem: () {},
+            child: CardWidget.basicCard(
+                title: "$temperature C",
+                subTitle: "Time: $time",
+                icon: Icons.thermostat,
+                color: Colors.red,
+                onTapItem: () {},
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildCard({
-    String? title,
-    String? subTitle,
-    IconData? icon,
-    Color? color,
-    Function()? onTapItem,
-  }) {
-    return InkWell(
-      onTap: onTapItem,
-      child: SizedBox(
-        height: 80,
-        child: Card(
-          elevation: 10,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(width: 20),
-              Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
-              const SizedBox(width: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Spacer(),
-                  Text(
-                    title ?? 'title',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    subTitle ?? 'subTitle',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                ],
-              ),
-              const Spacer(),
-              const Icon(Icons.arrow_forward_ios_rounded,
-                  size: 30, color: Colors.black),
-              const SizedBox(width: 20),
-            ],
-          ),
-        ),
       ),
     );
   }
