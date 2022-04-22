@@ -7,11 +7,12 @@ class CardWidget {
     IconData? icon,
     Color? color,
     Function()? onTapItem,
+    double? height,
   }) {
     return InkWell(
       onTap: onTapItem,
       child: SizedBox(
-        height: 80,
+        height: height ?? 80,
         child: Card(
           elevation: 10,
           child: Row(

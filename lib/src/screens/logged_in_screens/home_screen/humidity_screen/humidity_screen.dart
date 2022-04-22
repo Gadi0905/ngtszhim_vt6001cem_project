@@ -1,9 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/card_widget/card_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/loading_widget/loading_widget.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HumidityScreen extends StatefulWidget {
   const HumidityScreen({Key? key}) : super(key: key);
@@ -14,12 +14,24 @@ class HumidityScreen extends StatefulWidget {
 
 class _HumidityScreenState extends State<HumidityScreen> {
   final fb = FirebaseDatabase.instance;
-  var l;
-  var g;
-  var k;
-  var temperature;
-  var humidity;
-  var time;
+  final List<String> humidityList = [];
+  final List<String> timeList = [];
+
+  _readData() async {
+    for (var i = 0; i < 9; i++) {
+      final ref = fb.ref().child('data/humidity/humidity $i');
+      final humidity = await ref.child('humidity').get();
+      final time = await ref.child('time').get();
+      humidityList.add(humidity.value.toString());
+      timeList.add(time.value.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _readData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +42,68 @@ class _HumidityScreenState extends State<HumidityScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    final ref = fb.ref().child('data/humidity');
-    return DefaultBackgroundWidget.basicColor(
-      context: context,
-      child: FirebaseAnimatedList(
-        query: ref,
-        shrinkWrap: true,
-        itemBuilder: (context, snapshot, animation, index) {
-          var v = snapshot.value.toString();
-          g = v.replaceAll(RegExp("{|}|humidity: |temperature: |time: "), "");
-          g.trim();
-          l = g.split(',');
-          humidity = l[0];
-          time = l[1];
-          return Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: CardWidget.basicCard(
-                title: "$humidity %",
-                subTitle: "Time: $time",
-                icon: Icons.opacity,
-                color: Colors.blue,
-                onTapItem: () {},
+    return FutureBuilder(
+      future: _readData(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.connectionState != ConnectionState.done ||
+            humidityList == [] ||
+            timeList == []) {
+          return const Loading();
+        }
+        List<_HumData> data = [
+          _HumData("00:00", double.parse(humidityList[0])),
+          _HumData("03:00", double.parse(humidityList[1])),
+          _HumData("06:00", double.parse(humidityList[2])),
+          _HumData("09:00", double.parse(humidityList[3])),
+          _HumData("12:00", double.parse(humidityList[4])),
+          _HumData("15:00", double.parse(humidityList[5])),
+          _HumData("18:00", double.parse(humidityList[6])),
+          _HumData("21:00", double.parse(humidityList[7])),
+          _HumData("24:00", double.parse(humidityList[8])),
+        ];
+
+        return DefaultBackgroundWidget.basicColor(
+          context: context,
+          child: Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 10,
+                child: _buildSfCartesianChart(data),
+              ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
+
+  Widget _buildSfCartesianChart(List<_HumData> data) {
+    return SfCartesianChart(
+      primaryXAxis: CategoryAxis(),
+      title: ChartTitle(text: 'Humidity List'),
+      // legend: Legend(isVisible: true),
+      tooltipBehavior: TooltipBehavior(enable: true),
+      series: <ChartSeries<_HumData, String>>[
+        LineSeries<_HumData, String>(
+          dataSource: data,
+          xValueMapper: (_HumData humidity, _) => humidity.hour,
+          yValueMapper: (_HumData humidity, _) => humidity.hum,
+          name: 'Hum',
+          dataLabelSettings: const DataLabelSettings(isVisible: true),
+        )
+      ],
+    );
+  }
+}
+
+class _HumData {
+  _HumData(this.hour, this.hum);
+
+  final String hour;
+  final double hum;
 }

@@ -11,6 +11,7 @@ class DefaultBackgroundWidget {
   }) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
