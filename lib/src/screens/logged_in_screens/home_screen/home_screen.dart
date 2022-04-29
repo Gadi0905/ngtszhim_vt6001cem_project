@@ -20,22 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
   var temperature;
   var humidity;
 
-  _getData() async {
-    final ref = FirebaseDatabase.instance.ref();
-    final snapshot = await ref.child('data').get();
-    if (snapshot.exists) {
-      print(snapshot.value);
-    } else {
-      print('No data available.');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final ref = fb.ref().child('realTimeData');
     return Column(
       children: [
-        const Spacer(),
+        const Spacer(flex: 2),
         _buildTemperature(ref),
         const Spacer(),
         _buildHumidity(ref),

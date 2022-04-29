@@ -28,6 +28,7 @@ class _IndexScreenState extends State<IndexScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
       appBar: DefaultAppBarWidget.basicColor(),
       body: _buildBody(context),
       bottomNavigationBar: _buildBottomNavigationBar(),

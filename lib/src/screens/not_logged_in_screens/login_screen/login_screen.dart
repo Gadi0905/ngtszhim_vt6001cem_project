@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/text_button_widget.dart';
@@ -23,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: DefaultAppBarWidget.basicColor(),
       body: _buildBody(context),
     );
   }
@@ -35,9 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(),
-            _buildBackButton(context),
-            const Spacer(),
+            const Spacer(flex: 2),
             _buildTitle(),
             const Spacer(),
             _buildCard(context),
@@ -45,21 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildBackButton(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        IconButton(
-          iconSize: 30,
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: () {
-            RoutesHelper.pop(context);
-          },
-        )
-      ],
     );
   }
 

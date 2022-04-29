@@ -19,11 +19,6 @@ class _AccountScreenState extends State<AccountScreen> {
   late UserModel userModel;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: UserServices.getUser(uid: currentUserID),
@@ -42,7 +37,7 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Spacer(),
+              const Spacer(flex: 2),
               _buildUserInfo('User Name: ${userModel.userName}'),
               const SizedBox(height: 10),
               _buildUserInfo('Email: ${userModel.userEmail}'),

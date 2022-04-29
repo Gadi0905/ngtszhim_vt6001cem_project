@@ -28,14 +28,9 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    // _readData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: DefaultAppBarWidget.basicColor(),
       body: _buildBody(context),
     );
