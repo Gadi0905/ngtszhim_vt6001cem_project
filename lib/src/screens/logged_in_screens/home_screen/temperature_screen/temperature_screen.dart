@@ -30,7 +30,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
   @override
   void initState() {
     super.initState();
-    _readData();
+    // _readData();
   }
 
   @override

@@ -30,7 +30,7 @@ class _HumidityScreenState extends State<HumidityScreen> {
   @override
   void initState() {
     super.initState();
-    _readData();
+    // _readData();
   }
 
   @override
