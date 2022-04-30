@@ -43,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
             AssetImageWidget.basicImage(
               context: context,
               image: 'planting.png',
-              width: 250,
-              height: 250,
+              width: 200,
+              height: 200,
             ),
             _buildText(context),
-            const Spacer(flex: 3),
+            const Spacer(),
             _buildCard(context),
             const Spacer(),
           ],
@@ -63,20 +63,11 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Text(
-            'Welcome to Planting Prince',
+            'User login',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
               fontSize: 26,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'A simple app to help you grow plants',
-            style: TextStyle(
-              color: Colors.black38,
-              fontSize: 13,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 
@@ -38,8 +39,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(flex: 2),
-            // _buildTitle(),
+            const Spacer(),
+            AssetImageWidget.basicImage(
+              context: context,
+              image: 'planting.png',
+              width: 200,
+              height: 200,
+            ),
+            _buildText(context),
             const Spacer(),
             _buildCard(context),
             const Spacer(),
@@ -49,28 +56,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget _buildTitle() {
-    return Row(
-      children: const [
-        Padding(
-          padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
-          child: Text(
-            'Signup',
+  Widget _buildText(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          Text(
+            'User registration',
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
-              fontSize: 30,
+              fontSize: 26,
               fontWeight: FontWeight.bold,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildCard(BuildContext context) {
     return Column(
       children: [
-        _buildTitle(),
         Form(
           key: _key,
           child: Card(
