@@ -66,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             'User registration',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 26,
               fontWeight: FontWeight.bold,
             ),

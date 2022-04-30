@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             'User login',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 26,
               fontWeight: FontWeight.bold,
             ),

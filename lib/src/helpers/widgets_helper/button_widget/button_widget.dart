@@ -8,22 +8,21 @@ class ButtonWidget {
     String? title,
     Color? backgroundColor,
     Color? textColor,
+    Color? borderColor,
   }) {
     return SizedBox(
       height: 50,
       width: MediaQuery.of(context).size.width * 0.8,
       child: ElevatedButton(
         onPressed: onPressItem,
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.resolveWith<double>(
-            (Set<MaterialState> states) {
-              return 10;
-            },
+        style: ElevatedButton.styleFrom(
+          primary: backgroundColor ?? Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          backgroundColor:
-              MaterialStateProperty.all(backgroundColor ?? Colors.white),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          side: BorderSide(
+            width: 3.0,
+            color: borderColor ?? Colors.transparent,
           ),
         ),
         child: Text(
