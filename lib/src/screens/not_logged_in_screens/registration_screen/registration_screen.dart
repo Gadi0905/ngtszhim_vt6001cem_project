@@ -39,7 +39,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
-            _buildTitle(),
+            // _buildTitle(),
             const Spacer(),
             _buildCard(context),
             const Spacer(),
@@ -50,37 +50,49 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   Widget _buildTitle() {
-    return const Text(
-      'Planting Prince',
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 40,
-        fontWeight: FontWeight.bold,
-      ),
+    return Row(
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
+          child: Text(
+            'Signup',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildCard(BuildContext context) {
-    return Form(
-      key: _key,
-      child: Card(
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildNameField(),
-              const SizedBox(height: 20),
-              _buildEmailField(),
-              const SizedBox(height: 20),
-              _buildPasswordField(),
-              const SizedBox(height: 20),
-              _buildRegisterButton(),
-            ],
+    return Column(
+      children: [
+        _buildTitle(),
+        Form(
+          key: _key,
+          child: Card(
+            elevation: 10,
+            child: Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildNameField(),
+                  const SizedBox(height: 20),
+                  _buildEmailField(),
+                  const SizedBox(height: 20),
+                  _buildPasswordField(),
+                  const SizedBox(height: 20),
+                  _buildRegisterButton(),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 

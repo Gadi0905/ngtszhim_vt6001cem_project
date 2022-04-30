@@ -40,14 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
       shrinkWrap: true,
       itemBuilder: (context, snapshot, animation, index) {
         var v = snapshot.value.toString();
-        g = v.replaceAll(RegExp("{|}|humidity: |temperature: "), "");
+        g = v.replaceAll(RegExp('{|}|humidity: |temperature: '), '');
         g.trim();
         l = g.split(',');
         temperature = l[0];
         return Padding(
           padding: const EdgeInsets.all(30.0),
           child: _buildCard(
-            title: "$temperature C",
+            title: '$temperature C',
             icon: Icons.thermostat,
             color: Colors.red,
             onTapItem: () {
@@ -65,14 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
       shrinkWrap: true,
       itemBuilder: (context, snapshot, animation, index) {
         var v = snapshot.value.toString();
-        g = v.replaceAll(RegExp("{|}|humidity: |temperature: "), "");
+        g = v.replaceAll(RegExp('{|}|humidity: |temperature: '), '');
         g.trim();
         l = g.split(',');
         humidity = l[1];
         return Padding(
           padding: const EdgeInsets.all(30.0),
           child: _buildCard(
-            title: "$humidity %",
+            title: '$humidity %',
             icon: Icons.opacity,
             color: Colors.blue,
             onTapItem: () {

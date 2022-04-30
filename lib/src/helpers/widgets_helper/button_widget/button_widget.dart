@@ -23,7 +23,7 @@ class ButtonWidget {
           backgroundColor:
               MaterialStateProperty.all(backgroundColor ?? Colors.white),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           ),
         ),
         child: Text(

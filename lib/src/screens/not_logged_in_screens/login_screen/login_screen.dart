@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/text_button_widget.dart';
@@ -38,9 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(flex: 2),
-            _buildTitle(),
             const Spacer(),
+            AssetImageWidget.basicImage(
+              context: context,
+              image: 'planting.png',
+              width: 250,
+              height: 250,
+            ),
+            _buildText(context),
+            const Spacer(flex: 3),
             _buildCard(context),
             const Spacer(),
           ],
@@ -49,13 +56,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildTitle() {
-    return const Text(
-      'Planting Prince',
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 40,
-        fontWeight: FontWeight.bold,
+  Widget _buildText(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          Text(
+            'Welcome to Planting Prince',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'A simple app to help you grow plants',
+            style: TextStyle(
+              color: Colors.black38,
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

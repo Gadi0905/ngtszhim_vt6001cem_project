@@ -46,15 +46,15 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
           return const Loading();
         }
         List<_TempData> data = [
-          _TempData("00:00", double.parse(temperatureList[0])),
-          _TempData("03:00", double.parse(temperatureList[1])),
-          _TempData("06:00", double.parse(temperatureList[2])),
-          _TempData("09:00", double.parse(temperatureList[3])),
-          _TempData("12:00", double.parse(temperatureList[4])),
-          _TempData("15:00", double.parse(temperatureList[5])),
-          _TempData("18:00", double.parse(temperatureList[6])),
-          _TempData("21:00", double.parse(temperatureList[7])),
-          _TempData("24:00", double.parse(temperatureList[8])),
+          _TempData('00:00', double.parse(temperatureList[0])),
+          _TempData('03:00', double.parse(temperatureList[1])),
+          _TempData('06:00', double.parse(temperatureList[2])),
+          _TempData('09:00', double.parse(temperatureList[3])),
+          _TempData('12:00', double.parse(temperatureList[4])),
+          _TempData('15:00', double.parse(temperatureList[5])),
+          _TempData('18:00', double.parse(temperatureList[6])),
+          _TempData('21:00', double.parse(temperatureList[7])),
+          _TempData('24:00', double.parse(temperatureList[8])),
         ];
 
         return DefaultBackgroundWidget.basicColor(

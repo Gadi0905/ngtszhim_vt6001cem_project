@@ -8,11 +8,13 @@ class AssetImageWidget {
     String? image,
     double? width,
     double? height,
+    BoxFit? fit,
   }) {
     return Image.asset(
       ImagesPathHelper.imagePath(image ?? 'app_logo.png'),
       width: width ?? 200,
       height: height ?? 200,
+      fit: fit,
     );
   }
 }

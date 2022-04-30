@@ -46,15 +46,15 @@ class _HumidityScreenState extends State<HumidityScreen> {
           return const Loading();
         }
         List<_HumData> data = [
-          _HumData("00:00", double.parse(humidityList[0])),
-          _HumData("03:00", double.parse(humidityList[1])),
-          _HumData("06:00", double.parse(humidityList[2])),
-          _HumData("09:00", double.parse(humidityList[3])),
-          _HumData("12:00", double.parse(humidityList[4])),
-          _HumData("15:00", double.parse(humidityList[5])),
-          _HumData("18:00", double.parse(humidityList[6])),
-          _HumData("21:00", double.parse(humidityList[7])),
-          _HumData("24:00", double.parse(humidityList[8])),
+          _HumData('00:00', double.parse(humidityList[0])),
+          _HumData('03:00', double.parse(humidityList[1])),
+          _HumData('06:00', double.parse(humidityList[2])),
+          _HumData('09:00', double.parse(humidityList[3])),
+          _HumData('12:00', double.parse(humidityList[4])),
+          _HumData('15:00', double.parse(humidityList[5])),
+          _HumData('18:00', double.parse(humidityList[6])),
+          _HumData('21:00', double.parse(humidityList[7])),
+          _HumData('24:00', double.parse(humidityList[8])),
         ];
 
         return DefaultBackgroundWidget.basicColor(
