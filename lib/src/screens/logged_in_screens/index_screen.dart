@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/account_screen/account_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/home_screen/home_screen.dart';
@@ -38,9 +39,31 @@ class _IndexScreenState extends State<IndexScreen> {
   Widget _buildBody(BuildContext context) {
     return DefaultBackgroundWidget.basicColor(
       context: context,
-      child: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      child: Stack(
+        children: [
+          _buildBackgroundImage(context),
+          _buildItem(),
+        ],
       ),
+    );
+  }
+
+  Widget _buildBackgroundImage(BuildContext context) {
+    return Positioned.fill(
+      child: Opacity(
+        opacity: 0.3,
+        child: AssetImageWidget.basicImage(
+          context: context,
+          image: 'wallpaper.jpg',
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItem() {
+    return Center(
+      child: _widgetOptions.elementAt(_selectedIndex),
     );
   }
 

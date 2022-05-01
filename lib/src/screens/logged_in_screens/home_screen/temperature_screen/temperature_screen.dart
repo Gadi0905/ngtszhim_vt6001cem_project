@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/loading_widget/loading_widget.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -59,21 +60,43 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
 
         return DefaultBackgroundWidget.basicColor(
           context: context,
-          child: Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                elevation: 10,
-                child: _buildSfCartesianChart(data),
-              ),
-            ),
+          child: Stack(
+            children: [
+              _buildBackgroundImage(context),
+              _buildItem(data),
+            ],
           ),
         );
       },
+    );
+  }
+
+  Widget _buildBackgroundImage(BuildContext context) {
+    return Positioned.fill(
+      child: Opacity(
+        opacity: 0.3,
+        child: AssetImageWidget.basicImage(
+          context: context,
+          image: 'wallpaper.jpg',
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItem(List<_TempData> data) {
+    return Center(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.height * 0.4,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 10,
+          child: _buildSfCartesianChart(data),
+        ),
+      ),
     );
   }
 

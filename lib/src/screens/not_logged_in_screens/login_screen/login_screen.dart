@@ -34,24 +34,40 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildBody(BuildContext context) {
     return DefaultBackgroundWidget.basicColor(
       context: context,
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(),
-            AssetImageWidget.basicImage(
-              context: context,
-              image: 'planting.png',
-              width: 200,
-              height: 200,
-            ),
-            _buildText(context),
-            const Spacer(),
-            _buildCard(context),
-            const Spacer(),
-          ],
+      child: Stack(
+        children: [
+          _buildBackgroundImage(context),
+          _buildItem(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBackgroundImage(BuildContext context) {
+    return Positioned.fill(
+      child: Opacity(
+        opacity: 0.3,
+        child: AssetImageWidget.basicImage(
+          context: context,
+          image: 'wallpaper.jpg',
+          fit: BoxFit.cover,
         ),
+      ),
+    );
+  }
+
+  Widget _buildItem(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(),
+          _buildText(context),
+          const Spacer(),
+          _buildCard(context),
+          const Spacer(),
+        ],
       ),
     );
   }
@@ -60,15 +76,24 @@ class _LoginScreenState extends State<LoginScreen> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Text(
-            'User login',
-            textAlign: TextAlign.center,
+            'Login to your account',
+            textAlign: TextAlign.start,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Welcome back you\nproud plant owner',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
             ),
           ),
         ],
@@ -136,8 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildLoginButton() {
     return ButtonWidget.basicStyle(
       context: context,
-      title: 'Login',
-      backgroundColor: Colors.blue,
+      title: 'Log in',
+      backgroundColor: Colors.deepOrangeAccent.shade200,
       textColor: Colors.white,
       onPressItem: () {
         login();

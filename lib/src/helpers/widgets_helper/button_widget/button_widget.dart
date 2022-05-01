@@ -19,7 +19,7 @@ class ButtonWidget {
         style: ElevatedButton.styleFrom(
           primary: backgroundColor ?? Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(25.0),
           ),
           side: BorderSide(
             width: 3.0,

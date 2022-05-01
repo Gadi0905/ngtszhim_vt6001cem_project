@@ -16,7 +16,7 @@ class TextButtonWidget {
         Text(
           question ?? 'question',
           style: TextStyle(
-            color: questionColor ?? Colors.black,
+            color: questionColor ?? Colors.black45,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -25,7 +25,7 @@ class TextButtonWidget {
           child: Text(
             title ?? 'title',
             style: TextStyle(
-              color: textColor ?? Colors.blue,
+              color: textColor ?? Colors.black45,
               fontWeight: FontWeight.bold,
             ),
           ),

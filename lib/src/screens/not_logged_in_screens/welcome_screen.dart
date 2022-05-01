@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/login_screen/login_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/registration_screen/registration_screen.dart';
@@ -19,10 +20,8 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      color: Colors.black,
+    return DefaultBackgroundWidget.basicColor(
+      context: context,
       child: Stack(
         children: [
           _buildBackgroundImage(context),
@@ -52,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           const Spacer(),
           _buildWelcomeText(context),
-          const Spacer(flex: 2),
+          const Spacer(),
           _buildButton(context),
           const Spacer(),
         ],
@@ -64,23 +63,13 @@ class WelcomeScreen extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Text(
-            'Planting Prince',
-            textAlign: TextAlign.center,
+            'The best\napp for\nyour plants',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'A simple app to help you grow plants',
-            style: TextStyle(
-              color: Colors.white38,
-              fontSize: 15,
+              fontSize: 65,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -95,8 +84,7 @@ class WelcomeScreen extends StatelessWidget {
       children: [
         ButtonWidget.basicStyle(
           context: context,
-          backgroundColor: Colors.transparent,
-          borderColor: Colors.white,
+          backgroundColor: Colors.deepOrangeAccent.shade200,
           textColor: Colors.white,
           title: 'Getting started',
           onPressItem: () {
@@ -106,7 +94,7 @@ class WelcomeScreen extends StatelessWidget {
         const SizedBox(height: 20),
         ButtonWidget.basicStyle(
           context: context,
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.grey,
           textColor: Colors.white,
           title: 'Login',
           onPressItem: () {

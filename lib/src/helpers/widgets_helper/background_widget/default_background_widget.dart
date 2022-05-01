@@ -12,17 +12,18 @@ class DefaultBackgroundWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            topColor ?? Colors.lightBlueAccent,
-            middleColor ?? Colors.lightBlue,
-            bottomColor ?? Colors.blue
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
+      color: Colors.black87,
+      // decoration: BoxDecoration(
+      //   gradient: LinearGradient(
+      //     colors: [
+      //       topColor ?? Colors.lightBlueAccent,
+      //       middleColor ?? Colors.lightBlue,
+      //       bottomColor ?? Colors.blue
+      //     ],
+      //     begin: Alignment.topCenter,
+      //     end: Alignment.bottomCenter,
+      //   ),
+      // ),
       child: child,
     );
   }

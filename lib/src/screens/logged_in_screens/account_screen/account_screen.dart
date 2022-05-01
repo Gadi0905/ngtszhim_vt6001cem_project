@@ -75,6 +75,8 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget _buildLogoutButton() {
     return ButtonWidget.basicStyle(
       context: context,
+      backgroundColor: Colors.grey,
+      textColor: Colors.white,
       title: 'Logout',
       onPressItem: () async {
         logout();
