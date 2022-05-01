@@ -9,6 +9,7 @@ class ButtonWidget {
     Color? backgroundColor,
     Color? textColor,
     Color? borderColor,
+    double? fontSize,
   }) {
     return SizedBox(
       height: 50,
@@ -28,6 +29,7 @@ class ButtonWidget {
         child: Text(
           title ?? 'Button',
           style: TextStyle(
+            fontSize: fontSize ?? 16,
             color: textColor ?? Colors.blue,
             fontWeight: FontWeight.bold,
           ),

@@ -4,6 +4,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_wid
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/login_screen/login_screen.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/registration_screen/registration_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -66,11 +67,11 @@ class WelcomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Text(
-            'Welcome to Planting Prince',
+            'Planting Prince',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -79,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
             'A simple app to help you grow plants',
             style: TextStyle(
               color: Colors.white38,
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -89,12 +90,30 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context) {
-    return ButtonWidget.basicStyle(
-      context: context,
-      title: 'Getting started',
-      onPressItem: () {
-        RoutesHelper.pushScreen(context, const LoginScreen());
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ButtonWidget.basicStyle(
+          context: context,
+          backgroundColor: Colors.transparent,
+          borderColor: Colors.white,
+          textColor: Colors.white,
+          title: 'Getting started',
+          onPressItem: () {
+            RoutesHelper.pushScreen(context, const RegistrationScreen());
+          },
+        ),
+        const SizedBox(height: 20),
+        ButtonWidget.basicStyle(
+          context: context,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          title: 'Login',
+          onPressItem: () {
+            RoutesHelper.pushScreen(context, const LoginScreen());
+          },
+        ),
+      ],
     );
   }
 }
