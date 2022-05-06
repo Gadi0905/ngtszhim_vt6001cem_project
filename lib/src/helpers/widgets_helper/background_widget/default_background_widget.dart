@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class DefaultBackgroundWidget {
   // the basic color of background widget
   static basicColor({
+    Color? defaultColor,
     Color? topColor,
     Color? middleColor,
     Color? bottomColor,
@@ -12,7 +13,7 @@ class DefaultBackgroundWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      color: Colors.black87,
+      color: defaultColor ?? Colors.black38,
       // decoration: BoxDecoration(
       //   gradient: LinearGradient(
       //     colors: [

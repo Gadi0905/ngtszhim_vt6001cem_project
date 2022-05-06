@@ -69,14 +69,16 @@ class _IndexScreenState extends State<IndexScreen> {
 
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.account_box),
-          label: 'Account',
+          label: '',
         ),
       ],
       currentIndex: _selectedIndex,

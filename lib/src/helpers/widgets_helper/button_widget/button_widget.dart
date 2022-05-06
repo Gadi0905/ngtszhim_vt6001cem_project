@@ -10,10 +10,12 @@ class ButtonWidget {
     Color? textColor,
     Color? borderColor,
     double? fontSize,
+    double? width,
+    double? height,
   }) {
     return SizedBox(
-      height: 50,
-      width: MediaQuery.of(context).size.width * 0.8,
+      height: height ?? 50,
+      width: width ?? MediaQuery.of(context).size.width * 0.8,
       child: ElevatedButton(
         onPressed: onPressItem,
         style: ElevatedButton.styleFrom(

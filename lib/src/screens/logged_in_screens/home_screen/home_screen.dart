@@ -14,23 +14,46 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final fb = FirebaseDatabase.instance;
-  var l;
-  var g;
-  var k;
-  var temperature;
-  var humidity;
+  static dynamic l;
+  static dynamic g;
+  static dynamic temperature;
+  static dynamic humidity;
 
   @override
   Widget build(BuildContext context) {
     final ref = fb.ref().child('realTimeData');
-    return Column(
-      children: [
-        const Spacer(flex: 2),
-        _buildTemperature(ref),
-        const Spacer(),
-        _buildHumidity(ref),
-        const Spacer(),
-      ],
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        children: [
+          const Spacer(),
+          _buildText(),
+          const SizedBox(height: 10),
+          _buildTemperature(ref),
+          const SizedBox(height: 10),
+          _buildHumidity(ref),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildText() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+      child: Row(
+        children: const [
+          Text(
+            'Real Time Monitoring',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -45,9 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
         l = g.split(',');
         temperature = l[0];
         return Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: _buildCard(
-            title: '$temperature C',
+            title: '$temperature °C',
             icon: Icons.thermostat,
             color: Colors.red,
             onTapItem: () {
@@ -70,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
         l = g.split(',');
         humidity = l[1];
         return Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: _buildCard(
             title: '$humidity %',
             icon: Icons.opacity,
@@ -95,6 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SizedBox(
         height: 80,
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
           elevation: 10,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

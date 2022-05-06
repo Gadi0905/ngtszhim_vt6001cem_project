@@ -88,15 +88,40 @@ class _HumidityScreenState extends State<HumidityScreen> {
     return Center(
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.height * 0.4,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 10,
-          child: _buildSfCartesianChart(data),
+        height: MediaQuery.of(context).size.height * 0.5,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildText(),
+            _buildCard(data),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildText() {
+    return Row(
+      children: const [
+        Text(
+          'Humidity Chart',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCard(List<_HumData> data) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
+      ),
+      elevation: 10,
+      child: _buildSfCartesianChart(data),
     );
   }
 

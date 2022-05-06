@@ -55,6 +55,9 @@ class _AccountScreenState extends State<AccountScreen> {
     return SizedBox(
       height: 60,
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
         elevation: 10,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
