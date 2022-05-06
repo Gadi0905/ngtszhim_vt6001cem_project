@@ -104,7 +104,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
     return Row(
       children: const [
         Text(
-          'Temperature Chart',
+          'Daily Temperature Chart',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,

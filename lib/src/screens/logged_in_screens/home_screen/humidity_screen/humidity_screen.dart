@@ -104,7 +104,7 @@ class _HumidityScreenState extends State<HumidityScreen> {
     return Row(
       children: const [
         Text(
-          'Humidity Chart',
+          'Daily Humidity Chart',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
