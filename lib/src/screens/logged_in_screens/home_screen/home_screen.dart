@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildText() {
     return Padding(
-      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+      padding: const EdgeInsets.only(left: 40.0, right: 40.0),
       child: Row(
         children: const [
           Text(

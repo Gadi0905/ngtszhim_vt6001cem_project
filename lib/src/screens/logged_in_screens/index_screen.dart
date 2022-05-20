@@ -9,6 +9,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/loading_widget/loading_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/account_screen/account_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/home_screen/home_screen.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/todo_list_screen/todo_list_screen.dart';
 
 class IndexScreen extends StatefulWidget {
   const IndexScreen({Key? key}) : super(key: key);
@@ -90,6 +91,13 @@ class _IndexScreenState extends State<IndexScreen> {
             title: const Text('Account'),
             onTap: () {
               RoutesHelper.pushScreen(context, const AccountScreen());
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.pending_actions),
+            title: const Text('Todo List'),
+            onTap: () {
+              RoutesHelper.pushScreen(context, const TodoListScreen());
             },
           ),
           ListTile(

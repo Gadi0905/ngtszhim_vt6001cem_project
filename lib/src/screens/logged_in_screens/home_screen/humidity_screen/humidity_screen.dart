@@ -101,17 +101,20 @@ class _HumidityScreenState extends State<HumidityScreen> {
   }
 
   Widget _buildText() {
-    return Row(
-      children: const [
-        Text(
-          'Daily Humidity Chart',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      child: Row(
+        children: const [
+          Text(
+            'Daily Humidity Chart',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
