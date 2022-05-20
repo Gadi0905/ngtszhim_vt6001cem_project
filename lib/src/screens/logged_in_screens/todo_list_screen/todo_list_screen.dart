@@ -32,6 +32,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: DefaultAppBarWidget.basicColor(),
       body: _buildBody(context),
@@ -160,22 +161,38 @@ class _TodoListScreenState extends State<TodoListScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Title: ${todoList[index].title ?? 'title'}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'Description: ${todoList[index].description ?? 'description'}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'Time: ${TodoModel.timestampConvertToString(todoList[index].time)}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Title: ${todoList[index].title ?? 'title'}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Text(
+                'Description: ${todoList[index].description ?? 'description'}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Text(
+                'Time: ${TodoModel.timestampConvertToString(todoList[index].time)}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.delete, size: 20),
         ),
       ],
     );

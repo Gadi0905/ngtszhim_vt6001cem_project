@@ -22,6 +22,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: DefaultAppBarWidget.basicColor(),
       body: _buildBody(context),
