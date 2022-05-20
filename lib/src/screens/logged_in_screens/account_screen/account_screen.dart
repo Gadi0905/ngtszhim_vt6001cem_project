@@ -4,6 +4,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_hel
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/services_helper/user_services/user_services.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/loading_widget/loading_widget.dart';
@@ -23,41 +24,63 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: UserServices.getUser(uid: currentUserID),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasError) {
-            errorMessage = snapshot.error.toString();
-            return ErrorWidget(errorMessage);
-          }
-          if (snapshot.connectionState != ConnectionState.done ||
-              !snapshot.hasData) {
-            return const Loading();
-          }
-          userModel = snapshot.data!;
-          return Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: DefaultAppBarWidget.basicColor(),
-            body: DefaultBackgroundWidget.basicColor(
-              context: context,
-              child: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Spacer(flex: 2),
-                    _buildUserInfo('User Name: ${userModel.userName}'),
-                    const SizedBox(height: 10),
-                    _buildUserInfo('Email: ${userModel.userEmail}'),
-                    const Spacer(),
-                    _buildLogoutButton(),
-                    const Spacer(),
-                  ],
-                ),
-              ),
+      future: UserServices.getUser(uid: currentUserID),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasError) {
+          errorMessage = snapshot.error.toString();
+          return ErrorWidget(errorMessage);
+        }
+        if (snapshot.connectionState != ConnectionState.done ||
+            !snapshot.hasData) {
+          return const Loading();
+        }
+        userModel = snapshot.data!;
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: DefaultAppBarWidget.basicColor(),
+          body: DefaultBackgroundWidget.basicColor(
+            context: context,
+            child: Stack(
+              children: [
+                _buildBackgroundImage(context),
+                _buildItem(),
+              ],
             ),
-          );
-        },
-      );
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildBackgroundImage(BuildContext context) {
+    return Positioned.fill(
+      child: Opacity(
+        opacity: 0.3,
+        child: AssetImageWidget.basicImage(
+          context: context,
+          image: 'wallpaper.jpg',
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItem() {
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(flex: 2),
+          _buildUserInfo('User Name: ${userModel.userName}'),
+          const SizedBox(height: 10),
+          _buildUserInfo('Email: ${userModel.userEmail}'),
+          const Spacer(),
+          _buildLogoutButton(),
+          const Spacer(),
+        ],
+      ),
+    );
   }
 
   Widget _buildUserInfo(String title) {
