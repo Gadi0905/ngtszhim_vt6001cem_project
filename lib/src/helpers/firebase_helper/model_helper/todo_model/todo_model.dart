@@ -30,7 +30,7 @@ class TodoModel {
     }
     var dateFromTimeStamp =
     DateTime.fromMillisecondsSinceEpoch(timeStamp.seconds * 1000);
-    return DateFormat('dd-MM-yyyy hh:mm a').format(dateFromTimeStamp);
+    return DateFormat('dd-MM-yyyy').format(dateFromTimeStamp);
   }
 
   static Timestamp currentDatetimeToTimestamp() {

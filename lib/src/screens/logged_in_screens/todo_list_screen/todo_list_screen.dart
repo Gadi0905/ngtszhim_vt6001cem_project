@@ -181,7 +181,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 ),
               ),
               Text(
-                'Time: ${TodoModel.timestampConvertToString(todoList[index].time)}',
+                'Date: ${TodoModel.timestampConvertToString(todoList[index].time)}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   overflow: TextOverflow.ellipsis,
