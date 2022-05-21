@@ -6,6 +6,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_wid
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/top_snack_bar_widget/top_snack_bar_widget.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -220,9 +221,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         errorMessage = '';
       } on FirebaseAuthException catch (error) {
         errorMessage = error.message!;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        TopSnackBar.showError(context: context, errorMessage: errorMessage);
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(content: Text(errorMessage)),
+        // );
       }
     }
   }

@@ -6,6 +6,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_imag
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/text_button_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/top_snack_bar_widget/top_snack_bar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/registration_screen/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -192,9 +193,10 @@ class _LoginScreenState extends State<LoginScreen> {
         errorMessage = '';
       } on FirebaseAuthException catch (error) {
         errorMessage = error.message!;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        TopSnackBar.showError(context: context, errorMessage: errorMessage);
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(content: Text(errorMessage)),
+        // );
       }
     }
   }

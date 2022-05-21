@@ -192,7 +192,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
         ),
         IconButton(
           onPressed: () {
-            TodoServices.deleteTodo(todoList[index].id ?? '');
+            TodoServices.deleteTodo(context, todoList[index].id ?? '');
             setState(() {
               _getTodos();
             });

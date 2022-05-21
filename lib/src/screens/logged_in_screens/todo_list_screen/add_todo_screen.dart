@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model/todo_model.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/asset_image_widget/asset_image_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background_widget/default_background_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/button_widget/button_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/top_snack_bar_widget/top_snack_bar_widget.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/todo_list_screen/todo_list_screen.dart';
 
 class AddTodoScreen extends StatefulWidget {
   const AddTodoScreen({Key? key}) : super(key: key);
@@ -16,7 +19,7 @@ class AddTodoScreen extends StatefulWidget {
 class _AddTodoScreenState extends State<AddTodoScreen> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  // final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = '';
 
   @override
@@ -171,10 +174,12 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
           .collection('todos')
           .add(todo)
           .then((DocumentReference doc) {
-        print('DocumentSnapshot added with ID: ${doc.id}');
+        TopSnackBar.showInfo(context: context, message: 'Todo list has been added');
+        RoutesHelper.popToRoot(context);
+        RoutesHelper.pushScreen(context, const TodoListScreen());
       });
     } catch (e) {
-      print(e.toString());
+      TopSnackBar.showError(context: context, errorMessage: e.toString());
     }
   }
 }

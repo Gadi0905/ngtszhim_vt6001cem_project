@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model/todo_model.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/top_snack_bar_widget/top_snack_bar_widget.dart';
 
 class TodoServices {
   TodoServices._();
@@ -16,12 +18,13 @@ class TodoServices {
     return todos;
   }
 
-  static Future<void> deleteTodo(String docId) async {
+  static Future<void> deleteTodo(BuildContext context, String docId) async {
     try {
       await FirebaseFirestore.instance.collection("todos").doc(docId)
           .delete();
+      TopSnackBar.showInfo(context: context, message: 'Todo has been deleted');
     } catch (e) {
-      print(e.toString());
+      TopSnackBar.showError(context: context, errorMessage: e.toString());
     }
     return;
   }
