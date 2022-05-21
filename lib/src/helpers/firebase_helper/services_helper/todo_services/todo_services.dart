@@ -11,8 +11,18 @@ class TodoServices {
     final todoDocuments =
         await FirebaseFirestore.instance.collection('todos').get();
     for (var todo in todoDocuments.docs) {
-      todos.add(TodoModel.fromJson(todo.data()));
+      todos.add(TodoModel.fromJson(todo.data(), documentId: todo.id));
     }
     return todos;
+  }
+
+  static Future<void> deleteTodo(String docId) async {
+    try {
+      await FirebaseFirestore.instance.collection("todos").doc(docId)
+          .delete();
+    } catch (e) {
+      print(e.toString());
+    }
+    return;
   }
 }

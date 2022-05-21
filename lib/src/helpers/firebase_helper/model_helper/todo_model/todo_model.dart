@@ -2,13 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class TodoModel {
+  String? id;
   String? title;
   String? description;
   Timestamp? time;
 
-  TodoModel(this.title, this.description, this.time);
+  TodoModel(this.id, this.title, this.description, this.time);
 
-  TodoModel.fromJson(Map<String, dynamic> json) {
+  TodoModel.fromJson(Map<String, dynamic> json, {String? documentId}) {
+    id = documentId;
     title = json['title'];
     description = json['description'];
     time = json['time'];
@@ -38,6 +40,6 @@ class TodoModel {
 
   @override
   String toString() {
-    return 'TodoModel{title: $title, description: $description, time: $time}';
+    return 'TodoModel{id: $id, title: $title, description: $description, time: $time}';
   }
 }
