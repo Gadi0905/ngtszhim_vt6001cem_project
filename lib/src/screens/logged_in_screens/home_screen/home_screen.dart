@@ -128,21 +128,35 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(width: 20),
               Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
               const SizedBox(width: 20),
-              Text(
-                title ?? 'Card',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Spacer(),
-              const Icon(Icons.arrow_forward_ios_rounded,
-                  size: 30, color: Colors.black),
+              _buildInfoColumn(title),
+              // const Icon(Icons.arrow_forward_ios_rounded,
+              //     size: 30, color: Colors.black),
               const SizedBox(width: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildInfoColumn(String? title) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Spacer(),
+        Text(
+          title ?? 'Card',
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Text(
+          'Click me for more info',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const Spacer(),
+      ],
     );
   }
 }
