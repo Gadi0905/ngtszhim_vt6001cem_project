@@ -11,7 +11,7 @@ class TodoServices {
   static Future<List<TodoModel>> getTodos() async {
     List<TodoModel> todos = [];
     final todoDocuments =
-        await FirebaseFirestore.instance.collection('todos').get();
+        await FirebaseFirestore.instance.collection('todos').orderBy('time').get();
     for (var todo in todoDocuments.docs) {
       todos.add(TodoModel.fromJson(todo.data(), documentId: todo.id));
     }
