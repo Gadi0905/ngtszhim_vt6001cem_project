@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/top_snack_bar_widget/top_snack_bar_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/home_screen/humidity_screen/humidity_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/home_screen/temperature_screen/temperature_screen.dart';
 
@@ -33,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
           _buildTemperature(ref),
           const SizedBox(height: 10),
           _buildHumidity(ref),
+          const SizedBox(height: 10),
+          _buildCheckTempBtn(context),
           const Spacer(),
         ],
       ),
@@ -104,6 +107,29 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildCheckTempBtn(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        if (int.parse(temperature) >= 30) {
+          TopSnackBar.showError(
+            context: context,
+            errorMessage:
+                'Warning: The temperature is too high for plants to grow.',
+          );
+        } else {
+          TopSnackBar.showInfo(
+            context: context,
+            message: 'This temperature is suitable for plant growth.',
+          );
+        }
+      },
+      child: const Text(
+        'Check Temperature',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
     );
   }
 
