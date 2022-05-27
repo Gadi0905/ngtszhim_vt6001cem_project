@@ -9,6 +9,7 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/background
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/loading_widget/loading_widget.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/account_screen/account_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/home_screen/home_screen.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/observatory_screen/observatory_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/planting_info_screen/planting_info_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/todo_list_screen/todo_list_screen.dart';
 
@@ -77,9 +78,11 @@ class _IndexScreenState extends State<IndexScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Spacer(),
-                      Text('User Name: ${userModel.userName}', style: const TextStyle(fontSize: 12)),
+                      Text('User Name: ${userModel.userName}',
+                          style: const TextStyle(fontSize: 12)),
                       const SizedBox(height: 20),
-                      Text('User Email: ${userModel.userEmail}', style: const TextStyle(fontSize: 12)),
+                      Text('User Email: ${userModel.userEmail}',
+                          style: const TextStyle(fontSize: 12)),
                       const Spacer(),
                     ],
                   ),
@@ -89,7 +92,7 @@ class _IndexScreenState extends State<IndexScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.account_circle_rounded),
-            title: const Text('Account'),
+            title: const Text('My Account'),
             onTap: () {
               RoutesHelper.pushScreen(context, const AccountScreen());
             },
@@ -98,12 +101,19 @@ class _IndexScreenState extends State<IndexScreen> {
             leading: const Icon(Icons.article_rounded),
             title: const Text('Beginners Planting Tips'),
             onTap: () {
-            RoutesHelper.pushScreen(context, const PlantingInfoScreen());
+              RoutesHelper.pushScreen(context, const PlantingInfoScreen());
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.ac_unit_rounded),
+            title: const Text('Weather'),
+            onTap: () {
+              RoutesHelper.pushScreen(context, const ObservatoryScreen());
             },
           ),
           ListTile(
             leading: const Icon(Icons.pending_actions),
-            title: const Text('Todo List'),
+            title: const Text('Custom Todo List'),
             onTap: () {
               RoutesHelper.pushScreen(context, const TodoListScreen());
             },
