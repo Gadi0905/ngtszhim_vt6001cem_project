@@ -16,11 +16,11 @@ class TodoModel {
     time = json['time'];
   }
 
-  Map<String, Object?> toJson() {
+  Map<String, Object?> toJson(DateTime? dateTime) {
     return {
       'title': title,
       'description': description,
-      'time': currentDatetimeToTimestamp(),
+      'time': datetimeToTimestamp(dateTime),
     };
   }
 
@@ -29,13 +29,13 @@ class TodoModel {
       return '';
     }
     var dateFromTimeStamp =
-    DateTime.fromMillisecondsSinceEpoch(timeStamp.seconds * 1000);
-    return DateFormat('dd-MM-yyyy').format(dateFromTimeStamp);
+        DateTime.fromMillisecondsSinceEpoch(timeStamp.seconds * 1000);
+    return DateFormat('yyyy-MM-dd – kk:mm').format(dateFromTimeStamp);
   }
 
-  static Timestamp currentDatetimeToTimestamp() {
-    DateTime currentPhoneDate = DateTime.now(); //DateTime
-    return Timestamp.fromDate(currentPhoneDate);
+  static Timestamp datetimeToTimestamp(DateTime? dateTime) {
+    dateTime ??= DateTime.now();
+    return Timestamp.fromDate(dateTime);
   }
 
   @override

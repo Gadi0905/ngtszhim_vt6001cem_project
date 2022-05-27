@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model/todo_model.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
@@ -19,8 +20,10 @@ class AddTodoScreen extends StatefulWidget {
 class _AddTodoScreenState extends State<AddTodoScreen> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+
   // final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = '';
+  late DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +99,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
   Widget _buildCard(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.height * 0.45,
+      height: MediaQuery.of(context).size.height * 0.5,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25.0),
@@ -111,7 +114,9 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
               _buildTitleField(),
               const SizedBox(height: 20),
               _buildDescriptionField(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
+              _buildDateTimePicker(context),
+              const SizedBox(height: 20),
               ButtonWidget.basicStyle(
                 context: context,
                 title: 'Add Todo',
@@ -163,18 +168,40 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
     );
   }
 
+  Widget _buildDateTimePicker(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        DatePicker.showDateTimePicker(context, showTitleActions: true,
+            onChanged: (date) {
+          // print(
+          //   'change $date in time zone ' +
+          //       date.timeZoneOffset.inHours.toString(),
+          // );
+        }, onConfirm: (date) {
+          dateTime = date;
+          // print('confirm $dateTime');
+        }, currentTime: DateTime.now());
+      },
+      child: const Text(
+        'Please select the date and time here',
+        style: TextStyle(color: Colors.black54),
+      ),
+    );
+  }
+
   Future addTodo() async {
     try {
       final todo = <String, dynamic>{
         'title': titleController.text,
         'description': descriptionController.text,
-        'time': TodoModel.currentDatetimeToTimestamp(),
+        'time': TodoModel.datetimeToTimestamp(dateTime),
       };
       FirebaseFirestore.instance
           .collection('todos')
           .add(todo)
           .then((DocumentReference doc) {
-        TopSnackBar.showInfo(context: context, message: 'Todo list has been added');
+        TopSnackBar.showInfo(
+            context: context, message: 'Todo list has been added');
         RoutesHelper.popToRoot(context);
         RoutesHelper.pushScreen(context, const TodoListScreen());
       });

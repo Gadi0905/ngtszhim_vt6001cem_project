@@ -170,21 +170,21 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 'Title: ${todoList[index].title ?? 'title'}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                 ),
               ),
               Text(
                 'Description: ${todoList[index].description ?? 'description'}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                 ),
               ),
               Text(
                 'Date: ${TodoModel.timestampConvertToString(todoList[index].time)}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                 ),
               ),
             ],
