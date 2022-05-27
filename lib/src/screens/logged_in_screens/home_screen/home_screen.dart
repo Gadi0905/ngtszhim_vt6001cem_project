@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildCheckTempBtn(BuildContext context) {
     return TextButton(
       onPressed: () {
-        if (int.parse(temperature) >= 30) {
+        if (double.parse(temperature) >= 30) {
           TopSnackBar.showError(
             context: context,
             errorMessage:
