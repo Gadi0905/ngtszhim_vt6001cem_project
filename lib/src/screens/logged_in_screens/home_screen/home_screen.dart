@@ -127,8 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       child: const Text(
-        'Check Temperature',
-        style: TextStyle(color: Colors.white, fontSize: 20),
+        'Click me to know is the current temp suitable for planting?',
+        style: TextStyle(color: Colors.white, fontSize: 14),
+        textAlign: TextAlign.center,
       ),
     );
   }
