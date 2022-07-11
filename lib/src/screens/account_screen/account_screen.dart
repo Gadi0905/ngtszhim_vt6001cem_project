@@ -6,7 +6,6 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helpe
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_button.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_image_asset.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_loading.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -38,47 +37,25 @@ class _AccountScreenState extends State<AccountScreen> {
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: CustomAppBar.basicColor(),
-          body: CustomBackground.basicColor(
-            context: context,
-            child: Stack(
-              children: [
-                _buildBackgroundImage(context),
-                _buildItem(),
-              ],
+          body: CustomBackground(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Spacer(flex: 2),
+                  _buildUserInfo('User Name: ${userModel.userName}'),
+                  const SizedBox(height: 10),
+                  _buildUserInfo('Email: ${userModel.userEmail}'),
+                  const Spacer(),
+                  _buildLogoutButton(),
+                  const Spacer(),
+                ],
+              ),
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget _buildBackgroundImage(BuildContext context) {
-    return const Positioned.fill(
-      child: Opacity(
-        opacity: 0.3,
-        child: CustomImageAsset(
-          image: 'wallpaper.jpg',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItem() {
-    return Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Spacer(flex: 2),
-          _buildUserInfo('User Name: ${userModel.userName}'),
-          const SizedBox(height: 10),
-          _buildUserInfo('Email: ${userModel.userEmail}'),
-          const Spacer(),
-          _buildLogoutButton(),
-          const Spacer(),
-        ],
-      ),
     );
   }
 

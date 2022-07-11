@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_image_asset.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_loading.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -58,44 +57,22 @@ class _HumidityScreenState extends State<HumidityScreen> {
           _HumData('24:00', double.parse(humidityList[8])),
         ];
 
-        return CustomBackground.basicColor(
-          context: context,
-          child: Stack(
-            children: [
-              _buildBackgroundImage(context),
-              _buildItem(data),
-            ],
+        return CustomBackground(
+          child: Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildText(),
+                  _buildCard(data),
+                ],
+              ),
+            ),
           ),
         );
       },
-    );
-  }
-
-  Widget _buildBackgroundImage(BuildContext context) {
-    return const Positioned.fill(
-      child: Opacity(
-        opacity: 0.3,
-        child: CustomImageAsset(
-          image: 'wallpaper.jpg',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItem(List<_HumData> data) {
-    return Center(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.height * 0.5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildText(),
-            _buildCard(data),
-          ],
-        ),
-      ),
     );
   }
 

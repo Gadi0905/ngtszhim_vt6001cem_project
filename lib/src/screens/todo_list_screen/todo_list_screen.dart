@@ -4,7 +4,6 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/services_
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_image_asset.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/todo_list_screen/add_todo_screen.dart';
 
 class TodoListScreen extends StatefulWidget {
@@ -40,42 +39,20 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return CustomBackground.basicColor(
-      context: context,
-      child: Stack(
-        children: [
-          _buildBackgroundImage(context),
-          _buildItem(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBackgroundImage(BuildContext context) {
-    return const Positioned.fill(
-      child: Opacity(
-        opacity: 0.3,
-        child: CustomImageAsset(
-          image: 'wallpaper.jpg',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItem(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.9,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(),
-            _buildText(context),
-            const SizedBox(height: 10),
-            _buildCard(context),
-            const Spacer(),
-          ],
+    return CustomBackground(
+      child: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              _buildText(context),
+              const SizedBox(height: 10),
+              _buildCard(context),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

@@ -5,7 +5,6 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_app
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_button.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_text_button.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_image_asset.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_top_snack_bar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/registration/registration_screen.dart';
 
@@ -33,41 +32,19 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return CustomBackground.basicColor(
-      context: context,
-      child: Stack(
-        children: [
-          _buildBackgroundImage(context),
-          _buildItem(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBackgroundImage(BuildContext context) {
-    return const Positioned.fill(
-      child: Opacity(
-        opacity: 0.3,
-        child: CustomImageAsset(
-          image: 'wallpaper.jpg',
-          fit: BoxFit.cover,
+    return CustomBackground(
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Spacer(),
+            _buildText(context),
+            const Spacer(),
+            _buildCard(context),
+            const Spacer(),
+          ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildItem(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Spacer(),
-          _buildText(context),
-          const Spacer(),
-          _buildCard(context),
-          const Spacer(),
-        ],
       ),
     );
   }

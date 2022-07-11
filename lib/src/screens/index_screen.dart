@@ -5,7 +5,6 @@ import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/services_
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_image_asset.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_loading.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/account_screen/account_screen.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/home_screen/home_screen.dart';
@@ -125,32 +124,10 @@ class _IndexScreenState extends State<IndexScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return CustomBackground.basicColor(
-      context: context,
-      child: Stack(
-        children: [
-          _buildBackgroundImage(context),
-          _buildItem(),
-        ],
+    return CustomBackground(
+      child: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-    );
-  }
-
-  Widget _buildBackgroundImage(BuildContext context) {
-    return const Positioned.fill(
-      child: Opacity(
-        opacity: 0.3,
-        child: CustomImageAsset(
-          image: 'wallpaper.jpg',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItem() {
-    return Center(
-      child: _widgetOptions.elementAt(_selectedIndex),
     );
   }
 
@@ -166,24 +143,4 @@ class _IndexScreenState extends State<IndexScreen> {
       );
     }
   }
-
-// Widget _buildBottomNavigationBar() {
-//   return BottomNavigationBar(
-//     showSelectedLabels: false,
-//     showUnselectedLabels: false,
-//     items: const <BottomNavigationBarItem>[
-//       BottomNavigationBarItem(
-//         icon: Icon(Icons.home),
-//         label: '',
-//       ),
-//       BottomNavigationBarItem(
-//         icon: Icon(Icons.account_box),
-//         label: '',
-//       ),
-//     ],
-//     currentIndex: _selectedIndex,
-//     selectedItemColor: Colors.blue,
-//     onTap: _onItemTapped,
-//   );
-// }
 }
