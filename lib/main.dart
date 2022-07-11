@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
-import 'package:ngtszhim_vt6001cem_project/src/screens/logged_in_screens/index_screen.dart';
-import 'package:ngtszhim_vt6001cem_project/src/screens/not_logged_in_screens/welcome_screen.dart';
+import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/index_screen.dart';
+import 'package:ngtszhim_vt6001cem_project/src/screens/welcome/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
