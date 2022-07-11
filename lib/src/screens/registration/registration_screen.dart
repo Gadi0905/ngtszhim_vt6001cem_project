@@ -37,12 +37,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Spacer(),
             _buildText(context),
-            const Spacer(),
             _buildCard(context),
-            const Spacer(),
           ],
         ),
       ),
