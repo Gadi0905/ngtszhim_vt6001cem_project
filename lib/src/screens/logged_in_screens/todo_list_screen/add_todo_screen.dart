@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model/todo_model.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/routes_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/appbar_widget/default_appbar_widget.dart';
@@ -24,6 +24,37 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
   // final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = '';
   late DateTime dateTime = DateTime.now();
+
+  _showDialog(Widget child) {
+    showCupertinoModalPopup<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 216,
+            padding: const EdgeInsets.only(top: 6.0),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: child,
+            ),
+          );
+        });
+  }
+
+  _onClickTxtBtn() {
+    _showDialog(
+      CupertinoDatePicker(
+        initialDateTime: dateTime,
+        use24hFormat: true,
+        onDateTimeChanged: (DateTime newDateTime) {
+          setState(() => dateTime = newDateTime);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,16 +202,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
   Widget _buildDateTimePicker(BuildContext context) {
     return TextButton(
       onPressed: () {
-        DatePicker.showDateTimePicker(context, showTitleActions: true,
-            onChanged: (date) {
-          // print(
-          //   'change $date in time zone ' +
-          //       date.timeZoneOffset.inHours.toString(),
-          // );
-        }, onConfirm: (date) {
-          dateTime = date;
-          // print('confirm $dateTime');
-        }, currentTime: DateTime.now());
+        _onClickTxtBtn();
       },
       child: const Text(
         'Please select the date and time here',
