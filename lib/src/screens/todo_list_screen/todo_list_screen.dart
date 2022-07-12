@@ -110,9 +110,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
   Widget _buildListView() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
       child: ListView.separated(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(left: 20.0, top: 8.0, right: 20.0, bottom: 8.0),
         itemCount: todoList.length,
         itemBuilder: (BuildContext context, int index) {
           return _buildListItem(index);
@@ -128,11 +128,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Widget _buildListItem(int index) {
+    int num = index + 1;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Todo ${index.toString()}',
+          'Todo ${num.toString()}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
