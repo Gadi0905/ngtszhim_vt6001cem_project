@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/services_helper/todo_services.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
@@ -85,9 +86,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
       },
       child: Row(
         children: const [
-          Icon(Icons.add_rounded, color: Colors.white, size: 25),
+          Icon(FontAwesomeIcons.plus, color: Colors.white, size: 20),
           SizedBox(width: 10),
-          Text('Add todo', style: TextStyle(color: Colors.white)),
+          Text('Add todo', style: TextStyle(color: Colors.white, fontSize: 18)),
         ],
       ),
     );
@@ -128,42 +129,44 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
   Widget _buildListItem(int index) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Todo ${index.toString()}',
           style: const TextStyle(
-            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Title: ${todoList[index].title ?? 'title'}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.clip,
+        const SizedBox(width: 10),
+        Expanded(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Title: ${todoList[index].title ?? 'title'}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
-              ),
-              Text(
-                'Description: ${todoList[index].description ?? 'description'}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.clip,
+                Text(
+                  'Description: ${todoList[index].description ?? 'description'}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
-              ),
-              Text(
-                'Date: ${TodoModel.timestampConvertToString(todoList[index].time)}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.clip,
+                Text(
+                  'Date: ${TodoModel.timestampConvertToString(todoList[index].time)}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         IconButton(
@@ -173,7 +176,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
               _getTodos();
             });
           },
-          icon: const Icon(Icons.delete, size: 20),
+          icon: const Icon(FontAwesomeIcons.solidTrashCan, size: 20),
         ),
       ],
     );

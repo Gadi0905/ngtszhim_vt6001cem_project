@@ -5,9 +5,11 @@ class CustomAppBar {
   static basicColor({
     String? title,
     Color? backgroundColor,
+    Color? backButtonColor,
     bool? automaticallyImplyLeading,
   }) {
     return AppBar(
+      iconTheme: IconThemeData(color: backButtonColor),
       title: Text(title ?? ''),
       elevation: 0.0,
       automaticallyImplyLeading: automaticallyImplyLeading ?? true,

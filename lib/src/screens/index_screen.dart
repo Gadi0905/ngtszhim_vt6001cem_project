@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/user_model.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/services_helper/user_services.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
@@ -65,7 +66,7 @@ class _IndexScreenState extends State<IndexScreen> {
             child: Center(
               child: Row(
                 children: [
-                  const Icon(Icons.account_circle_rounded, size: 70),
+                  const Icon(FontAwesomeIcons.solidCircleUser, size: 70),
                   const SizedBox(width: 5),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,35 +85,35 @@ class _IndexScreenState extends State<IndexScreen> {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.account_circle_rounded),
+            leading: const Icon(FontAwesomeIcons.solidCircleUser),
             title: const Text('My Account'),
             onTap: () {
               RoutesHelper.pushScreen(context, const AccountScreen());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.article_rounded),
+            leading: const Icon(FontAwesomeIcons.solidFileLines),
             title: const Text('Beginners Planting Tips'),
             onTap: () {
               RoutesHelper.pushScreen(context, const PlantingInfoScreen());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.ac_unit_rounded),
+            leading: const Icon(FontAwesomeIcons.cloudSunRain),
             title: const Text('Weather'),
             onTap: () {
               RoutesHelper.pushScreen(context, const ObservatoryScreen());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.pending_actions),
+            leading: const Icon(FontAwesomeIcons.listOl),
             title: const Text('Custom Todo List'),
             onTap: () {
               RoutesHelper.pushScreen(context, const TodoListScreen());
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout_rounded),
+            leading: const Icon(FontAwesomeIcons.arrowRightFromBracket),
             title: const Text('Logout'),
             onTap: () {
               logout();

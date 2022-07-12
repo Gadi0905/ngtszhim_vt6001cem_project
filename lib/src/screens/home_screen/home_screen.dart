@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_top_snack_bar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/screens/home_screen/humidity_screen/humidity_screen.dart';
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: _buildCard(
             title: '$temperature °C',
-            icon: Icons.thermostat,
+            icon: FontAwesomeIcons.temperatureHalf,
             color: Colors.red,
             onTapItem: () {
               RoutesHelper.pushScreen(context, const TemperatureScreen());
@@ -99,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: _buildCard(
             title: '$humidity %',
-            icon: Icons.opacity,
+            icon: FontAwesomeIcons.droplet,
             color: Colors.blue,
             onTapItem: () {
               RoutesHelper.pushScreen(context, const HumidityScreen());
@@ -156,8 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Icon(icon ?? Icons.home, size: 45, color: color ?? Colors.black),
               const SizedBox(width: 20),
               _buildInfoColumn(title),
-              // const Icon(Icons.arrow_forward_ios_rounded,
-              //     size: 30, color: Colors.black),
               const SizedBox(width: 20),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_background.dart';
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: emailController,
           validator: validateEmail,
           decoration: const InputDecoration(
-            icon: Icon(Icons.email),
+            icon: Icon(FontAwesomeIcons.solidEnvelope),
             hintText: 'What is your email address?',
             labelText: 'Email',
           ),
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: passwordController,
           validator: validatePassword,
           decoration: const InputDecoration(
-            icon: Icon(Icons.password),
+            icon: Icon(FontAwesomeIcons.unlock),
             hintText: 'What is your password?',
             labelText: 'Password',
           ),

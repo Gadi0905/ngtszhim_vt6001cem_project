@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/firebase_helper/model_helper/todo_model.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/routes_helper/route_helper.dart';
 import 'package:ngtszhim_vt6001cem_project/src/helpers/widgets_helper/custom_appbar.dart';
@@ -148,7 +149,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
           controller: titleController,
           validator: validateTitle,
           decoration: const InputDecoration(
-            icon: Icon(Icons.title_rounded),
+            icon: Icon(FontAwesomeIcons.t),
             hintText: 'Please enter title here.',
             labelText: 'Title',
           ),
@@ -165,7 +166,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
           controller: descriptionController,
           validator: validateDescription,
           decoration: const InputDecoration(
-            icon: Icon(Icons.description),
+            icon: Icon(FontAwesomeIcons.solidFileLines),
             hintText: 'Please enter description here.',
             labelText: 'Description',
           ),
